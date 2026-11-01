@@ -1,8 +1,7 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
-import { resolve, join } from 'node:path';
+import { join } from 'node:path';
 import { selectRelease, stable, compare } from './release-policy.mjs';
 
 const packageName = '@nexcraft-dev/r2d1';
@@ -292,41 +291,6 @@ function verifySource() {
   validateReleaseSource(commit, process.env.RELEASE_VERSION);
 }
 
-async function publicationStatus(requirePublished) {
-  verifySource();
-  const version = process.env.RELEASE_VERSION;
-  assert.ok(stable(version));
-  const filename = `nexcraft-dev-r2d1-${version}.tgz`;
-  const bytes = await readFile(resolve('release', filename));
-  const integrity = `sha512-${createHash('sha512').update(bytes).digest('base64')}`;
-  const attempts = requirePublished ? 5 : 1;
-  for (let attempt = 0; attempt < attempts; attempt++) {
-    const metadata = (await registryVersions())[version];
-    if (metadata) {
-      assert.equal(
-        metadata.dist?.integrity,
-        integrity,
-        'Version already exists with different tarball bytes. Never overwrite or retag it.',
-      );
-      if (metadata.gitHead)
-        assert.equal(
-          metadata.gitHead,
-          process.env.RELEASE_SHA,
-          'Published gitHead does not match the release commit',
-        );
-      await output({ publish: 'false' });
-      console.log(`Confirmed ${packageName}@${version}: exact tarball already published`);
-      return;
-    }
-    if (!requirePublished) {
-      await output({ publish: 'true' });
-      return;
-    }
-    if (attempt < attempts - 1) await new Promise((resolve) => setTimeout(resolve, 5000));
-  }
-  throw new Error('Publication was not confirmed. Keep the tag and retry this exact version.');
-}
-
 requireWorkflow();
 switch (process.argv[2]) {
   case 'plan':
@@ -342,11 +306,11 @@ switch (process.argv[2]) {
     verifySource();
     break;
   case 'status':
-    await publicationStatus(false);
+  case 'confirm': {
+    const { runPublicationCommand } = await import('./npm-publication.mjs');
+    await runPublicationCommand(process.argv[2]);
     break;
-  case 'confirm':
-    await publicationStatus(true);
-    break;
+  }
   default:
     throw new Error('Expected plan, stage, reserve, verify-source, status, or confirm');
 }

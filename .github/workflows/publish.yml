@@ -84,7 +84,7 @@ jobs:
     # Checkout does not change GITHUB_REF. Environment policy still evaluates main.
     if: github.repository == 'nexcraft-dev/r2d1-ts' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     environment: npm
     permissions:
       contents: read
@@ -94,6 +94,13 @@ jobs:
       RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
       RELEASE_SHA: ${{ needs.prepare.outputs.sha }}
     steps:
+      - name: Load the controller from the main workflow commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Preserve current confirmation logic outside the package checkout
+        run: cp scripts/npm-publication.mjs "$RUNNER_TEMP/r2d1-npm-publication.mjs"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ needs.prepare.outputs.sha }}
@@ -135,7 +142,7 @@ jobs:
         run: cmp "release/nexcraft-dev-r2d1-$RELEASE_VERSION.tgz" "$RUNNER_TEMP/rebuilt-package/nexcraft-dev-r2d1-$RELEASE_VERSION.tgz"
       - name: Check whether the exact package is already published
         id: registry
-        run: node scripts/release.mjs status
+        run: node "$RUNNER_TEMP/r2d1-npm-publication.mjs" status
       - name: Publish the reserved version using OIDC
         if: steps.registry.outputs.publish == 'true'
         id: npm
@@ -143,4 +150,6 @@ jobs:
         run: npm publish "./release/nexcraft-dev-r2d1-$RELEASE_VERSION.tgz" --ignore-scripts --access public --registry https://registry.npmjs.org/
       - name: Confirm the immutable npm artifact, including ambiguous publish responses
         if: always() && steps.registry.outcome == 'success'
-        run: node scripts/release.mjs confirm
+        env:
+          NPM_PUBLISH_OUTCOME: ${{ steps.npm.outcome }}
+        run: node "$RUNNER_TEMP/r2d1-npm-publication.mjs" confirm
