@@ -140,7 +140,7 @@ jobs:
         if: steps.registry.outputs.publish == 'true'
         id: npm
         continue-on-error: true
-        run: npm publish "release/nexcraft-dev-r2d1-$RELEASE_VERSION.tgz" --ignore-scripts --access public --registry https://registry.npmjs.org/
+        run: npm publish "./release/nexcraft-dev-r2d1-$RELEASE_VERSION.tgz" --ignore-scripts --access public --registry https://registry.npmjs.org/
       - name: Confirm the immutable npm artifact, including ambiguous publish responses
         if: always() && steps.registry.outcome == 'success'
         run: node scripts/release.mjs confirm
