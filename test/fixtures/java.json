@@ -1,0 +1,87 @@
+{
+  "referenceCommit": "5afb4f97635ff8ff533e09b715232be13318b4b9",
+  "sourceSha256": {
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/DocumentKey.java": "d2ac651df7e3550ff8b4c45e739051e74a6fbe858f8218d16182177e8367f678",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/SpiValidation.java": "2f7eaf71928c12b77255d6d69120373074c8340cb4d2b61e0f885514ff9849f5",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/IndexCursor.java": "5e3c2c5438ac681ee31e2a3b452cb9c40a607cc49d85c8b02f247978f77db66e",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/IndexValue.java": "ef6f7591f0b6577c0ae5095c4aaa740631dba4282fde02680ad3c3a95acf67e1",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/StoredDocument.java": "b6e6a5a34d195d876ef2316d3f0327eef5033c2094dc9d647ffd8f4f59978370",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/internal/persistence/CursorCodec.java": "458edafe048eee1c16523344c3713b030bb30a99bf51a75b06d75a2f0d985e28",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/r2/R2ObjectKey.java": "e08f67b5af4dd819107b9965970f2a222df0ff170fdb8aec90fef3c1da3c4add",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/DocumentCodec.java": "78d0cf788d2106c867321267e174db6069e0b08712dfd13e5950c9485a66e453",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/annotation/Document.java": "e6ad1f85ec1e81516f94dbdd8fbc0a5f768c2b6859764c78febcafa5e844ceba",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/annotation/Id.java": "eeb10979f84d1ebdb86fb051f00c589d947d8ce5fdd306e15f872dcadec3dd17",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/annotation/Index.java": "58a4ef798d48179d04d001af882779c85c05b363e8fc024b29b74f2560ffe59b",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/Query.java": "44e5adfa2d89c915aab88e28a63d2542011efa2318237cd751ddf690b4cbb985",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/Page.java": "8492365250f792090090ce4e98442a7496612c5fe6d17139efe66891875c48a1",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/SortDirection.java": "3c60cfc05fe33b0eca1c0ddf43831c7839ecec7af90a6785d5235da65938c10f",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/IndexEntry.java": "95b2dd9396ca2a8f690ed7ddb5a3788cfb040804753ff68de1a51b16e5b8553d",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/IndexQuery.java": "2b3b83aa3d95b304706dfdf03715af04958e50d4fce0262d46d604545338512a",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/IndexPage.java": "90ba2cafdbfbcda34723e09e09adc8ba9aa62b2d7696c7c0df5af87203833a24",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/spi/StorageException.java": "2687021e6d5ef050b0202047a8a2f95e360630521b1567e397f083efedb7c468",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/metadata/D1CollectionMetadata.java": "23f803bba475f4595fe96e7c0241272024b2a23b20c3e959c4d99ad16d8f65c0",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/metadata/D1IndexedField.java": "4cba5a62181b1a8848685cbb8f7fb5c867dd192d5e9d504f4deed3268e83b683",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/metadata/D1Metadata.java": "5b78bf844488762555166d8a403fbac1c649559c354d88eb85963a931e71e90a",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/metadata/D1ValueType.java": "d6a6c409514995d6f8ffb0c2d6911f8a1456fa7ee799aa904c18758d461c19be",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/sql/D1SqlCompiler.java": "287bea896171dd6932de09c4ffb1de32b85ba86eaf18ceb35138a1325f9991f9",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/sql/D1Statement.java": "b7f413d5310d31d188d414ac262e1430275dc63a342c4ded65b2192f705cfa1c",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/sql/D1Parameter.java": "9fd2da447773d0e20b7346cf982228d7056ba2ecc18a69c85f75ac9e1a226d70",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/sql/D1Result.java": "fdf26847db09325011d665ffa3d510c148d4b439796d899f5b9e98470078a899",
+    "r2d1/src/main/java/dev/nexcraft/r2d1/d1/internal/schema/D1SchemaManager.java": "f650f535380a1f4702a88034b68b39866c110c9b1514f2f0f9a71b51249acc9b",
+    "r2d1-integration-tests/src/integrationTest/java/dev/nexcraft/r2d1/integration/support/IntegrationDocuments.java": "9733b728b6dc25a67913d035954a54d91230f2ba1686ef290974b16697a77fbe",
+    "r2d1-integration-tests/src/integrationTest/java/dev/nexcraft/r2d1/integration/support/IntegrationDocumentCodec.java": "ff315f13c1aef107c7bb376afc47b12bec21a8a6cd5835d9c18e18b1d9b3b7ce"
+  },
+  "cursors": [
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEA",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEBAAAACU5aL-2VnOq4gA",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTECgAAAAAAAAAA",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTECf_________8",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEDP_QAAAAAAAA",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEEAQ",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEEAA",
+    "AQAAAAV1c2VycwAAAAZ1c2VyLTEFAAAAAGqgAPAHW80V"
+  ],
+  "keys": [
+    "users/user-1",
+    "a%2Fb/x%20y%25%ED%95%9C%EA%B8%80%21",
+    "users/..%2Fx",
+    "users/a%2Bb",
+    "users/%F0%9F%98%80"
+  ],
+  "documentBase64": "ZFhObGNpX3RsWnpxdUlBLlRsby4tOTIyMzM3MjAzNjg1NDc3NTgwOC5jbUYzTHZDZm1JQQ==",
+  "statements": [
+    {
+      "kind": "schema",
+      "sql": "CREATE TABLE IF NOT EXISTS \"r2d1_it_persistence_v1\" (\"document_id\" TEXT PRIMARY KEY NOT NULL, \"country\" TEXT NOT NULL, \"rank\" INTEGER NOT NULL)",
+      "params": []
+    },
+    {
+      "kind": "schema",
+      "sql": "CREATE INDEX IF NOT EXISTS \"idx_r2d1_it_persistence_v1_country\" ON \"r2d1_it_persistence_v1\" (\"country\")",
+      "params": []
+    },
+    {
+      "kind": "schema",
+      "sql": "CREATE INDEX IF NOT EXISTS \"idx_r2d1_it_persistence_v1_rank\" ON \"r2d1_it_persistence_v1\" (\"rank\")",
+      "params": []
+    },
+    {
+      "kind": "upsert",
+      "sql": "INSERT INTO \"r2d1_it_persistence_v1\" (\"document_id\", \"country\", \"rank\") VALUES (?1, ?2, ?3) ON CONFLICT(\"document_id\") DO UPDATE SET \"country\" = excluded.\"country\", \"rank\" = excluded.\"rank\"",
+      "params": [
+        "user/한글",
+        "NZ",
+        "-9223372036854775808"
+      ]
+    },
+    {
+      "kind": "query",
+      "sql": "SELECT \"document_id\", \"rank\" FROM \"r2d1_it_persistence_v1\" WHERE (\"rank\" > ?1 OR (\"rank\" = ?1 AND \"document_id\" > ?2)) ORDER BY \"rank\" ASC, \"document_id\" ASC LIMIT ?3",
+      "params": [
+        "-9223372036854775808",
+        "user/한글",
+        "21"
+      ]
+    }
+  ]
+}
