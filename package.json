@@ -1,6 +1,6 @@
 {
   "name": "@nexcraft-dev/r2d1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Document storage on Cloudflare R2 with rebuildable D1 indexes for Node.js and Workers",
   "type": "module",
   "license": "Apache-2.0",
