@@ -13,6 +13,14 @@ export interface NodeD1Options {
   readonly apiToken: string;
   readonly fetch?: typeof globalThis.fetch;
 }
+/** Release the connection. The HTTP status already decides the error, so a cancel failure is not reported. */
+async function discard(response: Response): Promise<void> {
+  try {
+    await response.body?.cancel();
+  } catch {
+    // The caller throws a status-based error. The unread body must not replace it.
+  }
+}
 class RestD1Transport implements D1Transport {
   readonly #endpoint: string;
   readonly #token: string;
@@ -34,12 +42,18 @@ class RestD1Transport implements D1Transport {
     } catch {
       throw new StorageUnavailableError('D1 request failed before receiving a response');
     }
-    if (response.status === 401 || response.status === 403)
+    if (response.status === 401 || response.status === 403) {
+      await discard(response);
       throw new StorageAccessError(`D1 access denied with HTTP status ${response.status}`);
-    if (response.status === 429 || response.status >= 500)
+    }
+    if (response.status === 429 || response.status >= 500) {
+      await discard(response);
       throw new StorageUnavailableError(`D1 unavailable with HTTP status ${response.status}`);
-    if (!response.ok)
+    }
+    if (!response.ok) {
+      await discard(response);
       throw new StorageOperationError(`D1 request failed with HTTP status ${response.status}`);
+    }
     let payload: unknown;
     try {
       payload = await response.json();
