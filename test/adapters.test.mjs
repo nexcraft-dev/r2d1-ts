@@ -88,6 +88,30 @@ test('D1 REST classifies status and protocol failures without exposing tokens or
   }
 });
 
+test('D1 REST cancels unread error response bodies so connections are released', async () => {
+  for (const status of [401, 403, 429, 503, 400]) {
+    let cancelled = false;
+    const body = new ReadableStream({
+      pull(controller) {
+        controller.enqueue(new TextEncoder().encode('ignored'));
+      },
+      cancel() {
+        cancelled = true;
+      },
+    });
+    const indexes = new NodeD1IndexStore({
+      accountId: 'a',
+      databaseId: 'b',
+      apiToken: 'token',
+      fetch: async () => new Response(body, { status }),
+    });
+    await assert.rejects(indexes.initialize(schema.metadata), (error) => {
+      return error.name.startsWith('Storage') && error.message.includes(String(status));
+    });
+    assert.equal(cancelled, true, `body was not cancelled for HTTP ${status}`);
+  }
+});
+
 test('Node R2 uses canonical SDK commands, exact bytes, opaque listing cursors and borrowed ownership', async () => {
   const commands = [];
   let destroyed = 0;

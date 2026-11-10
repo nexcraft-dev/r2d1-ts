@@ -2,7 +2,7 @@
 
 An ESM TypeScript document library for Node.js 22+ and Cloudflare Workers. R2 stores authoritative document bytes. D1 stores a rebuildable index.
 
-This port preserves Java R2D1 storage contracts at commit `5afb4f97635ff8ff533e09b715232be13318b4b9`. It has not been published. Before release, use `npm pack` and install the resulting tarball. After release, install with `npm install @nexcraft-dev/r2d1`.
+This port preserves Java R2D1 storage contracts at commit `5afb4f97635ff8ff533e09b715232be13318b4b9`. Install with `npm install @nexcraft-dev/r2d1`.
 
 ## Node.js
 
